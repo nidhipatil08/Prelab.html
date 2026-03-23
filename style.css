@@ -1,0 +1,28 @@
+body{
+background: radial-gradient(white, yellow, pink);
+}
+h1{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+   text-shadow: 3px 3px burlywood;
+   
+   
+}
+.gallery{
+  height: 100vh;
+  width: 100vw;
+  padding-left: 70px;
+}
+img{
+    height: 200px;
+    width: 200px;
+    background-color: aqua;
+    margin: 10px;
+    box-shadow: 3px 2px 5px rosybrown;
+    border-radius: 20px;
+}  
+img:hover{
+    transform: scale(1.1);
+    transition: all 0.4s ease-in-out;
+} 
