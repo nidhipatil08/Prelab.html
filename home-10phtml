@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body style="padding:20px; font-family:Arial;">
+
+<h2>Welcome</h2>
+<p>This is the home page.</p>
+ <h1>Features</h1>
+<ul>
+    <li>Iframe layout</li>
+    <li>Navigation</li>
+    <li>Map embedding</li>
+    <li>External websites</li>
+</ul>
+
+</body>
+</html>
