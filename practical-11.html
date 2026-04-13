@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HTML5 APIs Demo</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+header {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 26px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+   background-color: rgb(131, 191, 211);
+    width: 300px;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+button {
+    background: #4facfe;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #007bff;
+}
+
+/* Drag & Drop */
+#dragBox {
+    width: 100px;
+    height: 100px;
+    background: orange;
+    margin: auto;
+    border-radius: 10px;
+    cursor: grab;
+}
+
+#dropZone {
+    width: 200px;
+    height: 120px;
+    border: 2px dashed #555;
+    margin: 15px auto;
+    line-height: 120px;
+    color: #555;
+    border-radius: 10px;
+}
+</style>
+
+<script>
+
+/* Drag & Drop */
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+
+/* Geolocation */
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        document.getElementById("location").innerHTML =
+        "Geolocation is not supported.";
+    }
+}
+
+function showPosition(position) {
+    document.getElementById("location").innerHTML =
+    "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+}
+
+/* Web Storage */
+function saveData() {
+    var name = document.getElementById("nameInput").value;
+    localStorage.setItem("username", name);
+    alert("Name Saved Successfully!");
+}
+
+function showData() {
+    var storedName = localStorage.getItem("username");
+    if (storedName) {
+        document.getElementById("storedData").innerHTML =
+        "Stored Name: " + storedName;
+    } else {
+        document.getElementById("storedData").innerHTML =
+        "No data stored.";
+    }
+}
+
+</script>
+</head>
+
+<body>
+
+<header>
+HTML5 APIs Demo 🌐
+</header>
+
+<div class="container">
+
+<!-- Drag & Drop -->
+<div class="card">
+<h2>Drag & Drop 🎯</h2>
+
+<div id="dragBox"
+     draggable="true"
+     ondragstart="drag(event)">
+Drag Me
+</div>
+
+<div id="dropZone"
+     ondrop="drop(event)"
+     ondragover="allowDrop(event)">
+Drop Here
+</div>
+
+</div>
+
+<!-- Geolocation -->
+<div class="card">
+<h2>Geolocation 📍</h2>
+
+<button onclick="getLocation()">
+Get My Location
+</button>
+
+<p id="location">
+Click button to get location.
+</p>
+
+</div>
+
+<!-- Web Storage -->
+<div class="card">
+<h2>Web Storage 💾</h2>
+
+<input type="text"
+       id="nameInput"
+       placeholder="Enter your name"
+       style="padding:8px; width:90%; border-radius:6px; border:1px solid #ccc;">
+
+<br><br>
+
+<button onclick="saveData()">
+Save Name
+</button>
+
+<button onclick="showData()">
+Show Stored Name
+</button>
+
+<p id="storedData"></p>
+
+</div>
+
+</div>
+
+</body>
+</html>
